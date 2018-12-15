@@ -10,6 +10,7 @@ import { GestionService } from './gestion.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-
+    NgxWebstorageModule.forRoot()
   ],
   providers: [GestionService],
   bootstrap: [AppComponent]

@@ -1,16 +1,16 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Messagerie(ENIG)</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#"> Send </a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" > Moi(Déconnexion) </a> </li>
-      </ul>
-    </div>
+      <div class="navbar-header">          
+          <a class="navbar-brand"  >Messagerie(ENIG)</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li class="active"><a  routerLink="/send"> Send </a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right ml-auto">                
+              <li><a  > Moi (Déconnexion)  </a>   </li>
+          </ul>
+      </div>
   </div>
 </nav>
 
@@ -34,8 +34,8 @@
 		  
           <div class="form-group">
             <label>Vers</label>
-            <select class="form-control">
-              <option value="" ></option>
+            <select class="form-control" >
+              <option  *ngFor="let user of users"  [ngValue]="user" >{{user.nom}}</option>
             </select>
           </div>
 		  

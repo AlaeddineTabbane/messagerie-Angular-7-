@@ -5,7 +5,7 @@ export class Message {
     private sujet:string;
     private contenu:string;
     private username:string;
-    private user:User
+    public user:User;
     constructor(){}
     public 
     public set value(v : User) {

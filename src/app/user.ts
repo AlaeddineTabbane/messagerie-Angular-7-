@@ -1,6 +1,6 @@
 export class User {
     private id:number;
-    public nom:string;
+     nom:string;
     private username:string;
     private password:string;
     constructor() {

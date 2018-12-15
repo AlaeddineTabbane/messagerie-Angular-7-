@@ -8,7 +8,7 @@
               <li class="active"><a  routerLink="/send"> Send </a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right ml-auto">                
-              <li><a  > Moi (Déconnexion)  </a>   </li>
+              <li><a (click)="deconnecter()" > Moi (Déconnexion)  </a>   </li>
           </ul>
       </div>
   </div>
@@ -16,7 +16,7 @@
 
 <div class="row" style="margin-top: 70px;margin-left: 10px;">
 
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 ml-auto mr-auto">
     <div class="col-md-12">
       <div class="panel panel-primary">
         <div class="panel-heading"> Envoyer un message</div>
@@ -24,22 +24,22 @@
 		
           <div class="form-group">
             <label>Sujet</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" [(ngModel)]="message.sujet">
           </div>
 		  
           <div class="form-group">
             <label>Message</label>
-            <textarea class="form-control" rows="4" ></textarea>
+            <textarea class="form-control" rows="4" [(ngModel)]="message.contenu"></textarea>
           </div>
 		  
           <div class="form-group">
             <label>Vers</label>
-            <select class="form-control" >
+            <select class="form-control" [(ngModel)]="message.userreceive">
               <option  *ngFor="let user of users"  [ngValue]="user" >{{user.nom}}</option>
             </select>
           </div>
 		  
-          <button class="btn btn-default">Submit</button>
+          <button class="btn btn-default" (click)="send()">Submit</button>
 		  
         </div>
       </div>

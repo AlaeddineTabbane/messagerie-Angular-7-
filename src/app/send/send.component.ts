@@ -3,7 +3,8 @@ import { User } from '../user';
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { GestionService } from '../gestion.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Message } from '../message';
+
 
 @Component({
   selector: 'app-send',
@@ -12,13 +13,20 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class SendComponent implements OnInit {
 
-  users:User[];
-  message:Message;
+   users:User[];
+   message:Message = new Message();
+   
   @LocalStorage()
-  islogin: any;
+  islogin: boolean;
+  @LocalStorage()
+  Utilisateur: any;
+  
   constructor(private serve:GestionService, private route:Router,private local:LocalStorageService) { }
 
   ngOnInit() {
+    this.message.$usersend=this.Utilisateur[0];
+    console.log(this.Utilisateur[0].nom);
+    
     if(!this.islogin){
       this.route.navigate(['login'])
     }else{
@@ -26,10 +34,24 @@ export class SendComponent implements OnInit {
     }
   }
 
+  deconnecter(){
+    this.local.clear("utilisateur");
+    this.islogin=false
+    this.route.navigate(['/login']);
+  }
+
   getUser(){
     this.serve.getUser().subscribe(
-      data => {console.log(data);},
+      data => {console.log(data);this.users=data},
       err  => {console.log(err);
+      }
+    )
+  }
+
+  send(){
+    this.serve.addMessage(this.message).subscribe(
+      data => {console.log(data); this.route.navigate(['/message-envoyes'])},
+      err => {console.log(err);
       }
     )
   }
